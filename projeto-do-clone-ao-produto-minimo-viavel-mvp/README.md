@@ -35,4 +35,4 @@ O projeto entrega uma ferramenta de alta performance para o fluxo de trabalho cr
 *Figura 3: Representação visual do fluxo de dados entre Frontend, IA e Nuvem.*
  
 ---
-[Voltar ao início](https://github.com/rayssabianca06)
+[Voltar ao início](https://github.com/bibijove/portfolio-rayssa-bianca-de-oliveira)
