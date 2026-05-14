@@ -13,6 +13,12 @@ A aplicação utiliza conceitos modernos de **Glassmorfismo** em sua interface e
 
 ---
 
+## 🖼️ Interface do Projeto
+![Demonstração do OrganicShape Pro](https://github.com/bibijove/portfolio-rayssa-bianca-de-oliveira/blob/main/projeto-laboratorio-de-engenharia-reversa/img/img.png)
+Figura 1: Dashboard com design Glassmorphism e controles de geração orgânica.
+
+---
+
 ## 🚀 Tecnologias Utilizadas
 * **Frontend:** HTML5 Semântico + Vanilla JavaScript (ES6+)
 * **Estilização:** CSS3 Avançado (Glassmorphism & Backdrop Filters)
@@ -44,4 +50,4 @@ A transição da escrita sintática para a descrição lógica exige que o engen
 3. Não é necessária nenhuma configuração de chave de API ou banco de dados.
 
 ---
-[Voltar ao início](https://github.com/bibijove/Blob-Studio)
+[Voltar ao início](https://github.com/bibijove/portfolio-rayssa-bianca-de-oliveira)
