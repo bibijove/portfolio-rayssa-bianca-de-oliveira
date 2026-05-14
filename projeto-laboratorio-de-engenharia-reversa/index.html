@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrganicShape Pro | Local Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-color: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: var(--text-color);
+            overflow: hidden;
+        }
+
+        .app-container {
+            width: 90%;
+            max-width: 1000px;
+            height: 80vh;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .sidebar {
+            padding: 30px;
+            border-right: 1px solid var(--glass-border);
+            display: flex; flex-direction: column; gap: 20px;
+        }
+
+        .canvas-area {
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .control-group { display: flex; flex-direction: column; gap: 8px; }
+        
+        input[type="range"] { width: 100%; accent-color: #00f2fe; }
+
+        .btn-action {
+            padding: 12px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-action:hover { background: rgba(255, 255, 255, 0.25); }
+        .btn-save { background: #4facfe; border: none; font-weight: bold; }
+
+        #blob-wrapper { width: 400px; height: 400px; }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <h2>Blob Studio</h2>
+            
+            <div class="control-group">
+                <label>COMPLEXIDADE</label>
+                <input type="range" id="complexity" min="3" max="12" value="6">
+            </div>
+
+            <div class="control-group">
+                <label>CONTRASTE</label>
+                <input type="range" id="contrast" min="1" max="15" value="5">
+            </div>
+
+            <div class="control-group">
+                <label>COR</label>
+                <input type="color" id="colorPicker" value="#4facfe">
+            </div>
+
+            <hr style="width:100%; opacity:0.1;">
+
+            <button class="btn-action btn-save" id="saveLocal">💾 Salvar Localmente</button>
+            <button class="btn-action" id="loadLocal">📂 Ver Último Salvo</button>
+            <button class="btn-action" onclick="window.location.reload()">🎲 Novo Formato</button>
+        </aside>
+
+        <main class="canvas-area">
+            <div id="blob-wrapper">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <path id="blobPath" fill="#4facfe" d=""></path>
+                </svg>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const path = document.getElementById('blobPath');
+        const complexity = document.getElementById('complexity');
+        const contrast = document.getElementById('contrast');
+        const colorPicker = document.getElementById('colorPicker');
+
+        // Gerador de Formas
+        function generateBlob() {
+            const points = parseInt(complexity.value);
+            const radius = 60;
+            const variance = parseInt(contrast.value) * 5;
+            const coords = [];
+            const angleStep = (Math.PI * 2) / points;
+
+            for (let i = 0; i < points; i++) {
+                const theta = i * angleStep;
+                const r = radius + (Math.random() * variance);
+                const x = 100 + r * Math.cos(theta);
+                const y = 100 + r * Math.sin(theta);
+                coords.push({x, y});
+            }
+
+            let d = `M ${coords[0].x} ${coords[0].y}`;
+            for (let i = 0; i < coords.length; i++) {
+                const next = coords[(i + 1) % coords.length];
+                const midX = (coords[i].x + next.x) / 2;
+                const midY = (coords[i].y + next.y) / 2;
+                d += ` Q ${coords[i].x} ${coords[i].y}, ${midX} ${midY}`;
+            }
+            path.setAttribute('d', d + ' Z');
+        }
+
+        // SALVAR LOCALMENTE (Substituindo o Firebase)
+        document.getElementById('saveLocal').onclick = () => {
+            const design = {
+                color: colorPicker.value,
+                d: path.getAttribute('d'),
+                date: new Date().toLocaleString()
+            };
+            localStorage.setItem('savedBlob', JSON.stringify(design));
+            alert('Design salvo no seu navegador!');
+        };
+
+        // CARREGAR ÚLTIMO SALVO
+        document.getElementById('loadLocal').onclick = () => {
+            const saved = localStorage.getItem('savedBlob');
+            if (saved) {
+                const design = JSON.parse(saved);
+                path.setAttribute('d', design.d);
+                path.setAttribute('fill', design.color);
+                colorPicker.value = design.color;
+                alert('Último design recuperado (Salvo em: ' + design.date + ')');
+            } else {
+                alert('Nenhum design salvo encontrado.');
+            }
+        };
+
+        [complexity, contrast].forEach(el => el.addEventListener('input', generateBlob));
+        colorPicker.addEventListener('input', (e) => path.setAttribute('fill', e.target.value));
+        
+        generateBlob();
+    </script>
+</body>
+</html>
