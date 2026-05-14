@@ -5,7 +5,7 @@ O **OrganicShape Pro** é uma ferramenta avançada de design generativo focada n
  
 Equipado com uma **Inteligência Artificial (Gemini API)** para sugestão de paletas cromáticas e um backend em **Firebase** para persistência de dados, o sistema oferece uma experiência "Cloud-First" onde cada criação pode ser salva, revisitada e gerenciada em uma galeria pessoal segura.
  
-![Logo do Projeto](https://img.icons8.com/color/512/design.png)
+![Logo do Projeto](https://github.com/bibijove/portfolio-rayssa-bianca-de-oliveira/blob/main/projeto-do-clone-ao-produto-minimo-viavel-mvp/img/Captura%20de%20tela%202026-05-12%20105109.png)
 *Figura 1: Interface principal com efeito glassmorphism e controle de formas generativas.*
  
 ## 🚀 Tecnologias Utilizadas
