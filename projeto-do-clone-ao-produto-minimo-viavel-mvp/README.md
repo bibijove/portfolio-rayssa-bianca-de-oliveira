@@ -22,9 +22,6 @@ O projeto entrega uma ferramenta de alta performance para o fluxo de trabalho cr
 * **Curadoria de Cores IA:** Uso de modelos de linguagem para sugerir cores que seguem tendências de design moderno e acessibilidade.
 * **Interface Premium:** Implementação de Glassmorphism e AnimatePresence para uma experiência de usuário fluida.
  
-![Exemplo de Blobs](https://raw.githubusercontent.com/ai-studio/assets/main/blob-preview.png)
-*Figura 2: Demonstração do motor de renderização de vetores dinâmicos.*
- 
 ## 🔧 Como Executar
 1. Clone o repositório.
 2. Instale as dependências: `npm install`.
