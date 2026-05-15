@@ -11,11 +11,11 @@
 ---
  
 ### 👨‍💻 Sobre
-Atualmente cursando o 6º período de Ciência da Computação na Universidade da Cidade de São Paulo. Sou apaixonado por resolver problemas através da tecnologia e possuo foco em [Área de Interesse - ex: Desenvolvimento Backend / Análise de Dados].
+Atualmente cursando o 6º período de Ciência da Computação na Universidade da Cidade de São Paulo. Sou apaixonado por resolver problemas através da tecnologia e possuo foco em Cyberseguranca Seguranca em Nuvem.
  
 * **Habilidades Técnicas:** Python, Java, SQL, C, HTML.
-* **Habilidades Socioemocionais:** Trabalho em equipe, comunicação assertiva e pensamento crítico.
-* **Experiência/Projetos Relevantes:** Atuei em [Projeto de Iniciação Científica/Estágio] onde desenvolvi [resultado principal].
+* **Habilidades Socioemocionais:** Comunicação, organização, proatividade, criatividade, colaboração, inteligência emocional.
+* **Experiência/Projetos Relevantes:** Atuei em Projeto Universitário de Engenharia de Software e Banco de Dados onde desenvolvi soluções com Arduino. No projeto de Engenharia de Software, participei da criação de um sistema de irrigação automatizada. Já no projeto de Banco de Dados, desenvolvi um jogo de futebol de carrinhos integrado ao Arduino, com sistema de pontuação em tempo real.
  
 ---
  
@@ -24,6 +24,8 @@ Atualmente cursando o 6º período de Ciência da Computação na Universidade d
 #### 💻 Linguagens e Tecnologias
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+![C](https://img.shields.io/badge/c-00599C?style=for-the-badge&logo=c&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
  
 #### 🗄️ Banco de Dados
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
