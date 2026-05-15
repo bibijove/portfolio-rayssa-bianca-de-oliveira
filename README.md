@@ -29,11 +29,7 @@ Atualmente cursando o 6º período de Ciência da Computação na Universidade d
  
 #### 🗄️ Banco de Dados
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
- 
-#### 🤖 Inteligência Artificial & Ciência de Dados
-![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
-![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
- 
+
 ---
  
 ### 📂 Portfólio de Projetos
