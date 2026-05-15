@@ -1,0 +1,86 @@
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// This security rules file assumes the following data structures:
+//
+// Collection: userBlobs
+// Document ID: auto-generated
+// Fields:
+//   - uid: string (required, immutable) - The UID of the creator
+//   - color: string (required) - Hex color code (e.g., #ff0080)
+//   - svgPath: string (required) - SVG path data
+//   - complexity: number (optional) - Complexity setting
+//   - contrast: number (optional) - Contrast setting
+//   - timestamp: timestamp (required) - Creation time
+//
+// ===============================================================
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isDocOwner() {
+      return isAuthenticated() && request.auth.uid == resource.data.uid;
+    }
+
+    function isValidColor(color) {
+      return color is string && color.matches("^#[0-9a-fA-F]{3,6}$");
+    }
+
+    function isValidSvgPath(path) {
+      // Basic check for SVG path string length to prevent DoS
+      return path is string && path.size() > 0 && path.size() < 5000;
+    }
+
+    function isValidUserBlob(data) {
+      return data.keys().hasAll(['uid', 'color', 'svgPath', 'timestamp']) &&
+             data.keys().hasOnly(['uid', 'color', 'svgPath', 'timestamp', 'complexity', 'contrast']) &&
+             data.uid is string && data.uid == request.auth.uid &&
+             isValidColor(data.color) &&
+             isValidSvgPath(data.svgPath) &&
+             data.timestamp is timestamp &&
+             (!('complexity' in data) || (data.complexity is number && data.complexity >= 3 && data.complexity <= 15)) &&
+             (!('contrast' in data) || (data.contrast is number && data.contrast >= 1 && data.contrast <= 20));
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+
+    match /userBlobs/{blobId} {
+      // Users can only read their own blobs
+      allow read: if isOwner(resource.data.uid);
+      
+      // Users can create blobs if they are valid and owned by them
+      allow create: if isAuthenticated() && isValidUserBlob(request.resource.data);
+      
+      // Blobs are immutable for now, or could allow updates if needed
+      // For this app, we'll allow updates only if the owner is the same and data remains valid
+      allow update: if isDocOwner() && 
+                       isValidUserBlob(request.resource.data) &&
+                       request.resource.data.uid == resource.data.uid &&
+                       request.resource.data.timestamp == resource.data.timestamp;
+
+      // Users can delete their own blobs
+      allow delete: if isDocOwner();
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
